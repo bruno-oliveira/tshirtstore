@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+// TODO improve controller to not get directy DB entities (@Product) - maybe it needs a DTO class
 
 @Controller
 public class ProductController {
