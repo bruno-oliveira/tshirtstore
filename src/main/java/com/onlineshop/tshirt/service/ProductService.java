@@ -20,8 +20,14 @@ public class ProductService implements IProductService {
         return products;
     }
 
+    @Override
     public Optional<Product> findById(Long id) {
         Optional<Product> product = repository.findById(id);
         return product;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 }

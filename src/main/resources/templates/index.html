@@ -8,9 +8,13 @@
 
 <body>
 <div ng-controller="ProductController">
-    <li ng-repeat="product in prods">
-        {{ product.name }}
-    </li>
+    <table>
+        <tr ng-repeat="product in prods">
+            <td> {{ product.name }}</td>
+            <td><button ng-click="edit()">Edit entry</button></td>
+            <td><button ng-click="remove($index)">Remove entry</button></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

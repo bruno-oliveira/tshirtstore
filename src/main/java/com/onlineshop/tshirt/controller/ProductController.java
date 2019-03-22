@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onlineshop.tshirt.service.IProductService;
 import com.onlineshop.tshirt.bean.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 // TODO improve controller to not get directy DB entities (@Product) - maybe it needs a DTO class
@@ -25,7 +26,7 @@ public class ProductController {
 
 
     @GetMapping(path="/showProducts/{product_id}")
-    public String getProductByID( @PathVariable("product_id") Long product_id, Model m) {
+    public String getProductByID( @PathVariable("product_id") Long product_id) {
         Product p = productService.findById(product_id).get();
         ObjectMapper mapper = new ObjectMapper();
         String ansAsJSON = "";
@@ -36,5 +37,13 @@ public class ProductController {
             e.printStackTrace();
         }
         return ansAsJSON;
+    }
+
+    @CrossOrigin(origins = "http://localhost:63342")
+    @DeleteMapping(path="/deleteProduct/{product_id}")
+    public ResponseEntity<Product> deleteProductByID(@PathVariable("product_id") Long product_id) {
+        productService.deleteById(product_id);
+        System.out.println("Deleted product with id "+product_id);
+        return new ResponseEntity<Product>(HttpStatus.OK);
     }
 }
