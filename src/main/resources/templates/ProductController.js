@@ -1,5 +1,8 @@
-angular.module('demo', [])
-.controller('ProductController', function($scope, $http) {
+var app = angular.module('demo', []);
+
+
+
+app.controller('ProductController', function($scope, $http) {
     $http.get('http://localhost:8090/showAllProducts').
         then(function(response) {
             $scope.prods = response.data;
@@ -11,8 +14,5 @@ angular.module('demo', [])
                         console.log("URL is "+url.href);
                          $http.delete(url.href).then(alert("Item removed"));
             $scope.prods.splice(x, 1);
-
-
-
         }
 });

@@ -6,12 +6,13 @@
     <script src="ProductController.js"></script>
 </head>
 
+
 <body>
 <div ng-controller="ProductController">
     <table>
         <tr ng-repeat="product in prods">
             <td> {{ product.name }}</td>
-            <td><button ng-click="edit()">Edit entry</button></td>
+            <td> <button onclick="location.href='main.html'">Edit entry</button></td>
             <td><button ng-click="remove($index)">Remove entry</button></td>
         </tr>
     </table>
