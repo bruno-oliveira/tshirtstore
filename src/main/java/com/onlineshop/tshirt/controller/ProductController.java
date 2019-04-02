@@ -18,28 +18,22 @@ public class ProductController {
     @Autowired
     IProductService productService;
 
-    @CrossOrigin(origins = "http://localhost:63342")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path="/showAllProducts")
     public @ResponseBody Iterable<Product> getAllProducts() {
         return productService.findAll();
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path="/showProducts/{product_id}")
-    public String getProductByID( @PathVariable("product_id") Long product_id) {
+    public  @ResponseBody Product getProductByID( @PathVariable("product_id") Long product_id) {
         Product p = productService.findById(product_id).get();
-        ObjectMapper mapper = new ObjectMapper();
-        String ansAsJSON = "";
-        try {
-            ansAsJSON = mapper.writeValueAsString(p);
-            return ansAsJSON;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return ansAsJSON;
+        System.out.println("Retrieved item with id "+product_id);
+       return p;
     }
 
-    @CrossOrigin(origins = "http://localhost:63342")
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path="/deleteProduct/{product_id}")
     public ResponseEntity<Product> deleteProductByID(@PathVariable("product_id") Long product_id) {
         productService.deleteById(product_id);
