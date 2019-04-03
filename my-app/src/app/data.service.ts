@@ -10,7 +10,11 @@ export class DataService {
   }
 
   get_products(){
-    return this.httpClient.get(this.baseUrl + '/showAllProducts');
+    return this.httpClient.get(this.baseUrl + '/showAllProducts')
   }
+
+  get_product(id){
+      return this.httpClient.get(this.baseUrl + '/showProducts/'+id)
+    }
 
 }
