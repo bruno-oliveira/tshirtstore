@@ -30,4 +30,9 @@ public class ProductService implements IProductService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public void update(Product p) {
+        repository.save(p);
+    }
 }

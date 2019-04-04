@@ -1,8 +1,11 @@
 <div style="text-align:center">
 </div>
 <h2>Product detail </h2>
-      <li>
-        {{product.product_id}}
-        {{product.name}}
-      </li>
 
+<label>
+  Name:
+  <input type="text" [formControl]="name" (ngSubmit)="onSubmit()">
+  <p>
+    <button (click)="updateName()">Update Name</button>
+  </p>
+</label>

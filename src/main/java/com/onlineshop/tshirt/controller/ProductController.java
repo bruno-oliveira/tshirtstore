@@ -40,4 +40,14 @@ public class ProductController {
         System.out.println("Deleted product with id "+product_id);
         return new ResponseEntity<Product>(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(path="/updateProduct/{product_id}")
+    public  @ResponseBody void updateProductDetails(@RequestBody Product updatedProd, @PathVariable("product_id") Long product_id){
+        Product p = productService.findById(product_id).get();
+        System.out.println("new name is "+updatedProd.getName());
+       p.setName(updatedProd.getName());
+        productService.update(p);
+
+    }
 }

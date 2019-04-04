@@ -10,4 +10,5 @@ public interface IProductService {
      List<Product> findAll();
      Optional<Product> findById(Long id);
      void deleteById(Long id);
+     void update(Product p);
 }
