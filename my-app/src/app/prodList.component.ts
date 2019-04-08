@@ -25,9 +25,11 @@ export class ProdListComponent1 {
 
  deleteItem(id: number) {
             console.log("Inside delete "+id);
+            var ind = this.products.findIndex(product=>product.product_id==id);
+            console.log(ind);
              if(confirm("Are you sure to delete item with id"+id)) {
                console.log("Implement delete functionality here");
-               this.products.splice(id-1, 1);
+               this.products.splice(ind, 1);
                this.dataService.deleteProduct(id).subscribe();
              }
            }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ProdListComponent1 } from './prodList.component';
 import { EditComponent } from './edit.component';
+import { CreateProductComponent } from './createProduct.component';
 import { ModuleWithProviders } from "@angular/core";
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
     path: '',
     component: ProdListComponent1
   },
+  {
+      path: 'createProduct',
+      component: CreateProductComponent
+    },
   {
     path: 'showProducts',
     children: [

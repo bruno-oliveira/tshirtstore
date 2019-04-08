@@ -58,4 +58,19 @@ public class ProductController {
         productService.update(p);
 
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping(path="/createProduct")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+       System.out.println("New product to be added is "+product);
+       Product p = new Product();
+       p.setName(product.getName());
+       p.setDescription(product.getDescription());
+       p.setPrice(product.getPrice());
+       p.setDiscounted_price(product.getDiscounted_price());
+       p.setDisplay(product.getDisplay());
+       productService.save(p);
+       return new ResponseEntity<Product>(HttpStatus.OK);
+    }
+
 }

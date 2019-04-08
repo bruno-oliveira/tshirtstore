@@ -32,4 +32,16 @@ export class DataService {
         return this.httpClient.delete(this.baseUrl + '/deleteProduct/'+id);
       }
 
+    addProduct(product): Observable<any> {
+       return this.httpClient.post(this.baseUrl + '/createProduct',
+       {
+         "name": product.name,
+           "description": product.description,
+           "price": product.price,
+           "discounted_price": product.discounted_price,
+           "display": product.display
+       });
+
+    }
+
 }

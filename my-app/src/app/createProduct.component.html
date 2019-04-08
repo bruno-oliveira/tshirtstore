@@ -1,0 +1,36 @@
+<div style="text-align:center">
+<h2>Add new product</h2>
+</div>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <h3>Product</h3>
+
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+
+  <label>
+    Desc.:
+    <input type="text" formControlName="description">
+  </label>
+
+  <label>
+    Price:
+    <input type="text" formControlName="price">
+  </label>
+
+  <label>
+    Price with discount:
+    <input type="text" formControlName="discounted_price">
+  </label>
+
+  <label>
+    Display:
+    <input type="text" formControlName="display">
+  </label>
+
+  <button type="submit">Submit</button>
+</form>
+

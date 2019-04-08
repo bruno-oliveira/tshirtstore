@@ -4,6 +4,7 @@ export class Product {
    description: string;
    price: number;
    discounted_price: number;
+   display: number;
    constructor() {
    }
 }

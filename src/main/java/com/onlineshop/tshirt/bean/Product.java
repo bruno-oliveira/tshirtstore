@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name="product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long product_id;
 
     private String name;
@@ -57,7 +57,7 @@ public class Product {
                 '}';
     }
 
-    private Product(){
+    public Product(){
 
     }
     public Product(Long product_id, String name, String description, Double price, Double discounted_price, String image, String image_2, String thumbnail, Integer display) {

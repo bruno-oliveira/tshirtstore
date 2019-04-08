@@ -6,6 +6,7 @@
 </div>
 <h2>List of products </h2>
 <ul>
+  <a [routerLink]="['/createProduct']" routerLinkActive="active"> + Create new product </a>
   <li>
     <ul>
       <li *ngFor="let product of products" >
