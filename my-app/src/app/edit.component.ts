@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
  private pid : Number;
  private prodName : string;
  private productsObservable : Observable<Product[]> ;
-  name = new FormControl('');
+  private name = new FormControl('');
 
   constructor(private route: ActivatedRoute, private dataService: DataService) {
        this.route.params.subscribe( params => this.pid=params.id);

@@ -11,7 +11,9 @@
       <li *ngFor="let product of products" >
         -- id: {{product.product_id}}
         -- name: {{product.name}}
+        -- price: {{product.price}}
         <a [routerLink]="['/showProducts',product.product_id]">Product details</a>
+        <>Product details</a>
       </li>
     </ul>
   </li>
