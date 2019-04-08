@@ -33,6 +33,7 @@ public class ProductController {
        return p;
     }
 
+    //Check deleteByID - maybe this wasnt working before due to not having the observable in delete (see @https://angular.io/guide/http#making-a-delete-request )
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path="/deleteProduct/{product_id}")
     public ResponseEntity<Product> deleteProductByID(@PathVariable("product_id") Long product_id) {
