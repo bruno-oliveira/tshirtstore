@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from './data.service';
 import { Product } from './product';
@@ -15,7 +13,7 @@ export class ProdListComponent1 {
   private products : Product[] = [];
   private productsObservable : Observable<Product[]> ;
 
-  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute){
+  constructor(private dataService: DataService){
 
     this.dataService.get_products().subscribe((res : Product[])=>{
           console.log(res);
@@ -27,8 +25,7 @@ export class ProdListComponent1 {
             console.log("Inside delete "+id);
             var ind = this.products.findIndex(product=>product.product_id==id);
             console.log(ind);
-             if(confirm("Are you sure to delete item with id"+id)) {
-               console.log("Implement delete functionality here");
+             if(confirm("Are you sure to delete item with id "+id)) {
                this.products.splice(ind, 1);
                this.dataService.deleteProduct(id).subscribe();
              }
