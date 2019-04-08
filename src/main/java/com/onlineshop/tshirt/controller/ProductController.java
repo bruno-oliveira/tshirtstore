@@ -36,9 +36,16 @@ public class ProductController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path="/deleteProduct/{product_id}")
     public ResponseEntity<Product> deleteProductByID(@PathVariable("product_id") Long product_id) {
-        productService.deleteById(product_id);
-        System.out.println("Deleted product with id "+product_id);
-        return new ResponseEntity<Product>(HttpStatus.OK);
+        Product p = productService.findById(product_id).orElse(null);
+        System.out.println(p!=null?"Found product with id "+product_id:"Not found");
+        if(p!=null) {
+            productService.delete(p);
+            System.out.println("Deleted product with id " + product_id);
+            return new ResponseEntity<Product>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Product>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

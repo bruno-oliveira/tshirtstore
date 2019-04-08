@@ -22,4 +22,13 @@ export class ProdListComponent1 {
           this.products = res;
         });
   }
+
+ deleteItem(id: number) {
+            console.log("Inside delete "+id);
+             if(confirm("Are you sure to delete item with id"+id)) {
+               console.log("Implement delete functionality here");
+               this.products.splice(id-1, 1);
+               this.dataService.deleteProduct(id).subscribe();
+             }
+           }
 }

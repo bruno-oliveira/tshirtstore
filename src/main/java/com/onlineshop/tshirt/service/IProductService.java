@@ -11,4 +11,5 @@ public interface IProductService {
      Optional<Product> findById(Long id);
      void deleteById(Long id);
      void update(Product p);
+     void delete(Product p);
 }

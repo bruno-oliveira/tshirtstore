@@ -27,4 +27,9 @@ export class DataService {
      });
    }
 
+   deleteProduct(id) : Observable<{}>  {
+        console.log("Delete inside service");
+        return this.httpClient.delete(this.baseUrl + '/deleteProduct/'+id);
+      }
+
 }

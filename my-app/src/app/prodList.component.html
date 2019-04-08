@@ -13,7 +13,9 @@
         -- name: {{product.name}}
         -- price: {{product.price}}
         <a [routerLink]="['/showProducts',product.product_id]">Product details</a>
-        <>Product details</a>
+
+        <button (click)="deleteItem(product.product_id)">Delete</button>
+
       </li>
     </ul>
   </li>
