@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Product } from './product';
 import { FormControl } from '@angular/forms';
 
@@ -22,7 +22,7 @@ export class EditComponent implements OnInit {
  private productsObservable : Observable<Product[]> ;
   private name = new FormControl('');
 
-  constructor(private route: ActivatedRoute, private dataService: DataService) {
+  constructor(private route: ActivatedRoute, private dataService: DataService,private router: Router) {
        this.route.params.subscribe( params => this.pid=params.id);
         this.dataService.get_product(this.pid).subscribe((res : Product)=>{
                      console.log(res);
@@ -35,7 +35,8 @@ export class EditComponent implements OnInit {
     updateName(){
     console.log("Updating name");
      this.dataService.updateProduct(this.product,this.name.value,this.pid).subscribe((res: any)=>{
-     console.log(res);
+     console.log("The res is "+res);
+      this.router.navigate(['']);
      });
     }
 
