@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { LoginService } from './login.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
     selector: 'login',
-    templateUrl: './login.component.html'
+    templateUrl: '../login/login.component.html'
 })
 
 export class LoginComponent implements OnInit {

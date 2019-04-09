@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { DataService } from './data.service';
-import { Product } from './product';
+import { DataService } from '../service/data.service';
+import { Product } from '../product/product';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './prodList.component.html',
+  templateUrl: '../components/prodList.component.html',
 })
 export class ProdListComponent1 {
 

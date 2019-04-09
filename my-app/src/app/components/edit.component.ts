@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './data.service';
+import { DataService } from '../service/data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from "@angular/router";
-import { Product } from './product';
+import { Product } from '../product/product';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
-  templateUrl: './edit.component.html',
+  templateUrl: '../components/edit.component.html',
  //styleUrls: ['./posts.component.scss']
 })
 

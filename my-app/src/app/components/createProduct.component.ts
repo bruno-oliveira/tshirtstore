@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './data.service';
+import { DataService } from '../service/data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from "@angular/router";
-import { Product } from './product';
+import { Product } from '../product/product';
 import { FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './createProduct.component.html',
+  templateUrl: '../components/createProduct.component.html',
  //styleUrls: ['./posts.component.scss']
 })
 

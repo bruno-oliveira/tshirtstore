@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { DataService } from './data.service';
-import { LoginService } from './login.service';
+import { DataService } from './service/data.service';
+import { LoginService } from './login/login.service';
 
 import { AppComponent } from './app.component';
-import { ProdListComponent1 } from './prodList.component';
-import { CreateProductComponent } from './createProduct.component';
-import { EditComponent } from './edit.component';
-import { LoginComponent } from './login.component';
-import { routingModule } from './app-routing.module';
+import { ProdListComponent1 } from './components/prodList.component';
+import { CreateProductComponent } from './components/createProduct.component';
+import { EditComponent } from './components/edit.component';
+import { LoginComponent } from './login/login.component';
+import { routingModule } from './routing/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
