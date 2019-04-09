@@ -1,23 +1,70 @@
 <!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    List Products
-  </h1>
-</div>
-<h2>List of products </h2>
-<ul>
-  <a [routerLink]="['/createProduct']" routerLinkActive="active"> + Create new product </a>
-  <li>
-    <ul>
-      <li *ngFor="let product of products" >
-        -- id: {{product.product_id}}
-        -- name: {{product.name}}
-        -- price: {{product.price}}
-        <a [routerLink]="['/showProducts',product.product_id]">Product details</a>
 
-        <button (click)="deleteItem(product.product_id)">Delete</button>
 
-      </li>
-    </ul>
-  </li>
-</ul>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="product_id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.product_id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell fxFlex="40px" *matHeaderCellDef> Description </th>
+    <td mat-cell fxFlex="40px" *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="customColumn1">
+    <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <button (click)="deleteItem(element.product_id)">Delete</button>  </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="customColumn2">
+    <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+    <mat-cell *matCellDef="let element"><a [routerLink]="['/showProducts',element.product_id]">Product details</a>  </mat-cell>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!--<div style="text-align:center">-->
+  <!--<h1>-->
+    <!--List Products-->
+  <!--</h1>-->
+<!--</div>-->
+<!--<h2>List of products </h2>-->
+<!--<ul>-->
+  <!--<a [routerLink]="['/createProduct']" routerLinkActive="active"> + Create new product </a>-->
+
+
+  <!--<div class="table-responsive">-->
+    <!--<table class="table">-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th>ID</th>-->
+        <!--<th>Name</th>-->
+        <!--<th>Price</th>-->
+        <!--<th>Details</th>-->
+        <!--<th>Delete</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let product of products">-->
+        <!--<td>{{product.product_id}}</td>-->
+        <!--<td>{{product.name}}</td>-->
+        <!--<td>{{product.price}}</td>-->
+        <!--<td> <a [routerLink]="['/showProducts',product.product_id]">Product details</a> </td>-->
+
+        <!--<td> <button (click)="deleteItem(product.product_id)">Delete</button> </td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
+  <!--</div>-->
+
+<!--</ul>-->

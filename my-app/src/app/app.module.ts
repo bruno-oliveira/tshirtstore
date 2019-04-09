@@ -13,6 +13,7 @@ import { EditComponent } from './components/edit.component';
 import { LoginComponent } from './login/login.component';
 import { routingModule } from './routing/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     routingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   providers: [DataService,LoginService],
   bootstrap: [AppComponent]
