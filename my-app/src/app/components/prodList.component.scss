@@ -1,0 +1,17 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-table {
+ width: 100%;
+}
+
+.mat-column-customColumn1,  .mat-column-customColumn2{
+  width: 90px;
+}
+
+.mat-column-name {
+  width: 280px;
+}
+
+.mat-column-product_id {
+  width: 85px;
+}

@@ -1,7 +1,5 @@
 <!--The whole content below can be removed with the new code.-->
 
-
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="product_id">
@@ -15,18 +13,18 @@
   </ng-container>
 
   <ng-container matColumnDef="description">
-    <th mat-header-cell fxFlex="40px" *matHeaderCellDef> Description </th>
-    <td mat-cell fxFlex="40px" *matCellDef="let element"> {{element.description}} </td>
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
   </ng-container>
 
   <ng-container matColumnDef="customColumn1">
-    <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
-    <mat-cell *matCellDef="let element"> <button (click)="deleteItem(element.product_id)">Delete</button>  </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Delete <th>
+    <td *matCellDef="let element"> <button (click)="deleteItem(element.product_id)">Delete</button>  </td>
   </ng-container>
 
   <ng-container matColumnDef="customColumn2">
-    <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a [routerLink]="['/showProducts',element.product_id]">Product details</a>  </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Details <th>
+    <td *matCellDef="let element"> <button [routerLink]="['/showProducts',element.product_id]">Product details</button>  </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

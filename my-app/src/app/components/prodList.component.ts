@@ -8,6 +8,7 @@ import { Product } from '../product/product';
 @Component({
   selector: 'app-root',
   templateUrl: '../components/prodList.component.html',
+  styleUrls: ['../components/prodList.component.scss']
 })
 export class ProdListComponent1 implements OnInit {
 
