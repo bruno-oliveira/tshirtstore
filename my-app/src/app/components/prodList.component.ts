@@ -15,7 +15,7 @@ export class ProdListComponent1 implements OnInit {
   private products : Product[] = [];
   private productsObservable : Observable<Product[]> ;
   private displayedColumns;
-  private dataSource;
+  public dataSource =  new MatTableDataSource();
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -27,10 +27,14 @@ export class ProdListComponent1 implements OnInit {
           this.products = res;
             this.displayedColumns = ['product_id','name','description','customColumn1','customColumn2'];
             this.dataSource = new MatTableDataSource(this.products);
+            this.dataSource.sort=this.sort;
+            this.dataSource.paginator = this.paginator;
         });
   }
 
+
   ngOnInit(){
+
   }
 
  deleteItem(id: number) {
