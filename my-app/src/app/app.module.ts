@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { DataService } from './service/data.service';
 import { LoginService } from './login/login.service';
+import { UserService } from './user/user.service';
 
 import { AppComponent } from './app.component';
 import { ProdListComponent } from './components/prodList.component';
@@ -31,7 +32,7 @@ import { MaterialModule } from './material.module';
     FormsModule,
     MaterialModule
   ],
-  providers: [DataService,LoginService],
+  providers: [DataService,LoginService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
