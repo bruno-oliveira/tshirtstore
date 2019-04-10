@@ -7,7 +7,7 @@ import { DataService } from './service/data.service';
 import { LoginService } from './login/login.service';
 
 import { AppComponent } from './app.component';
-import { ProdListComponent1 } from './components/prodList.component';
+import { ProdListComponent } from './components/prodList.component';
 import { CreateProductComponent } from './components/createProduct.component';
 import { EditComponent } from './components/edit.component';
 import { LoginComponent } from './login/login.component';
@@ -20,7 +20,7 @@ import { MaterialModule } from './material.module';
     AppComponent,
     CreateProductComponent,
     EditComponent,
-    ProdListComponent1,
+    ProdListComponent,
     LoginComponent
   ],
   imports: [

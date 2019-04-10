@@ -10,7 +10,7 @@ import { Product } from '../product/product';
   templateUrl: '../components/prodList.component.html',
   styleUrls: ['../components/prodList.component.scss']
 })
-export class ProdListComponent1 implements OnInit {
+export class ProdListComponent implements OnInit {
 
   private products : Product[] = [];
   private productsObservable : Observable<Product[]> ;
