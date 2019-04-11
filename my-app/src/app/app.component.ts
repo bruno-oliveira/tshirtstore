@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './user/user.service';
 import { User } from './user/user';
+import { Role } from './user/role';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { User } from './user/user';
 export class AppComponent {
 
     userFromApi: User;
+    userRole: any = Role;
 
     constructor(private userService: UserService){
     this.userFromApi = this.userService.get_user();

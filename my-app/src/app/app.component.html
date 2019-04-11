@@ -1,4 +1,4 @@
-<div *ngIf="userFromApi.role !== 'ADMIN' ">
+<div *ngIf="userFromApi.role === userRole.ADMIN ">
   {{userFromApi.name}}
 </div>
 <router-outlet></router-outlet>
