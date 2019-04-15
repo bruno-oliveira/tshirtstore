@@ -22,6 +22,12 @@ export class LoginService {
           let result = this.http.post<string>(url, {
               username: this.model.username,
               pass: this.model.password
-          },{ responseType: 'text' as 'json'}).subscribe(res => console.log("res is "+res));
+          },{ responseType: 'text' as 'json'}).subscribe(res => {console.log("res is "+res); localStorage.setItem('token',res)});
+
+  }
+
+  logout(){
+  //TODO remove on server-side also
+  localStorage.setItem('token',null);
   }
   }
