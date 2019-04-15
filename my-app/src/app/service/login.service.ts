@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse, HttpResponse,HttpHeaders  } from '@angular/common/http';
 import { Product } from '../product/product';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
@@ -14,20 +15,13 @@ export class LoginService {
 
   }
 
-  login(model){
+  login(model): Observable<string>{
+  const headers = new HttpHeaders();
   this.model=model;
    let url = 'http://localhost:8090/login';
-          let result = this.http.post(url, {
-              userName: this.model.username,
-              password: this.model.password
-          }).
-          subscribe(isValid => {
-              if (isValid) {
-                  sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
-                  this.router.navigate(['']);
-              } else {
-                  alert("Authentication failed.")
-              }
-          });
+          let result = this.http.post<string>(url, {
+              username: this.model.username,
+              pass: this.model.password
+          },{ responseType: 'text' as 'json'}).subscribe(res => console.log("res is "+res));
   }
   }
