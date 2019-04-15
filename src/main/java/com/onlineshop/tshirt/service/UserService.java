@@ -25,4 +25,12 @@ public class UserService implements IUserService {
         Optional<User> user = repository.findById(id);
         return user;
     }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        Optional<User> user = repository.findByUsername(username);
+        return user;
+    }
+
+
 }

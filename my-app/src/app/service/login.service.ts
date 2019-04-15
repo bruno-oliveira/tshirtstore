@@ -4,7 +4,7 @@ import { Product } from '../product/product';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {map} from 'rxjs/operators';
+import {map,retry,catchError} from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
@@ -15,7 +15,7 @@ export class LoginService {
 
   }
 
-  login(model): Observable<string>{
+  login(model){
   const headers = new HttpHeaders();
   this.model=model;
    let url = 'http://localhost:8090/login';

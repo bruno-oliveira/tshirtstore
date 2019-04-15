@@ -29,7 +29,7 @@ public class BasicAuthConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/login","/showAllProducts", "/createProduct","/showProducts/*","/deleteProduct/*", "/showAllUsers", "/showUser/*").permitAll()
+                .antMatchers("/login","/showAllProducts", "/createProduct","/showProducts/*","/deleteProduct/*", "/showAllUsers", "/showUser/*","/showUserByName/*").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

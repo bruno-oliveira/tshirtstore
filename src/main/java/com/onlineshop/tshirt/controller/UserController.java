@@ -42,16 +42,30 @@ public class UserController {
         return p;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path="/showUserByName/{username}")
+    public  @ResponseBody User getUserByUsername( @PathVariable("username") String username) {
+        User p = userService.findByUsername(username).get();
+        return p;
+    }
+
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody ResponseEntity<String> login(@RequestBody UserLoginDetails userLogin) {
         LOGGER.info(userLogin.toString());
-
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(Base64.getEncoder().encodeToString((userLogin.getUsername()+":"+userLogin.getPass()).getBytes()));
+        User p = userService.findByUsername(userLogin.getUsername()).get();
+        byte[] decodedBytes = Base64.getDecoder().decode(p.getPassword());
+        String decodedString = new String(decodedBytes);
+        if(userLogin.getUsername().equals(p.getUsername()) && userLogin.getPass().equals(decodedString)) {
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(Base64.getEncoder().encodeToString((userLogin.getUsername() + ":" + userLogin.getPass()).getBytes()));
+        }
+        else{
+            return ResponseEntity.badRequest().body("Wrong request");
+        }
 
     }
 
