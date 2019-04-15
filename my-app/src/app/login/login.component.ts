@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
         private http: HttpClient, private loginService: LoginService) { }
 
     ngOnInit() {
-        sessionStorage.setItem('token', '');
+        localStorage.setItem('token', '');
     }
 
 

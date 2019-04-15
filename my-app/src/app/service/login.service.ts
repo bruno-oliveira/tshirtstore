@@ -22,7 +22,7 @@ export class LoginService {
           let result = this.http.post<string>(url, {
               username: this.model.username,
               pass: this.model.password
-          },{ responseType: 'text' as 'json'}).subscribe(res => {console.log("res is "+res); localStorage.setItem('token',res)});
+          },{ responseType: 'text' as 'json'}).subscribe(res => {console.log("res is "+res); localStorage.setItem('token',res);  this.router.navigate(['']);});
 
   }
 

@@ -14,7 +14,9 @@ export class AppComponent {
     userRole: any = Role;
 
     constructor(private userService: UserService){
-    this.userFromApi = this.userService.get_user();
+    this.userService.get_user(atob(localStorage.get('token')).split(":")[0]).subscribe((res : User)=>{
+                                                                                                         console.log(res);
+                                                                                                         this.userFromApi = res;});
         }
 
 }

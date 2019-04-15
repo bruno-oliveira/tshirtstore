@@ -15,12 +15,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 @Controller
 public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
+    private final Map<String,String> tokenStore = new TreeMap();
 
     @Autowired
     IUserService userService;
@@ -58,10 +63,12 @@ public class UserController {
         byte[] decodedBytes = Base64.getDecoder().decode(p.getPassword());
         String decodedString = new String(decodedBytes);
         if(userLogin.getUsername().equals(p.getUsername()) && userLogin.getPass().equals(decodedString)) {
+            final String userToken = Base64.getEncoder().encodeToString((userLogin.getUsername() + ":" + userLogin.getPass()).getBytes());
+            tokenStore.put(userLogin.getUsername(),userToken);
             return ResponseEntity
                     .ok()
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(Base64.getEncoder().encodeToString((userLogin.getUsername() + ":" + userLogin.getPass()).getBytes()));
+                    .body(tokenStore.get(userLogin.getUsername()));
         }
         else{
             return ResponseEntity.badRequest().body("Wrong request");
