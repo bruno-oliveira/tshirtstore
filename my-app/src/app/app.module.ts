@@ -4,8 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { DataService } from './service/data.service';
-import { LoginService } from './login/login.service';
-import { UserService } from './user/user.service';
+import { LoginService } from './service/login.service';
+import { UserService } from './service/user.service';
 
 import { AppComponent } from './app.component';
 import { ProdListComponent } from './components/prodList.component';
