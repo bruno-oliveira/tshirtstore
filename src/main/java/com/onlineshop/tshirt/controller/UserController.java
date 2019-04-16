@@ -49,9 +49,9 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path="/showUserByName/{username}")
-    public  @ResponseBody User getUserByUsername( @PathVariable("username") String username) {
+    public  @ResponseBody ResponseEntity<User> getUserByUsername( @PathVariable("username") String username) {
         User p = userService.findByUsername(username).get();
-        return p;
+        return ResponseEntity.ok().header("Access-Control-Allow-Origin", "*").body(p);
     }
 
 
@@ -68,6 +68,7 @@ public class UserController {
             return ResponseEntity
                     .ok()
                     .contentType(MediaType.APPLICATION_JSON)
+                    .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
                     .body(tokenStore.get(userLogin.getUsername()));
         }
         else{
