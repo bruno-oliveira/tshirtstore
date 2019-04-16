@@ -2,6 +2,7 @@ package com.onlineshop.tshirt.controller;
 
 import com.onlineshop.tshirt.bean.Product;
 import com.onlineshop.tshirt.bean.User;
+import com.onlineshop.tshirt.bean.UserToken;
 import com.onlineshop.tshirt.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,6 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    private final Map<String,String> tokenStore = new TreeMap();
 
     @Autowired
     IUserService userService;
@@ -51,30 +51,40 @@ public class UserController {
     @GetMapping(path="/showUserByName/{username}")
     public  @ResponseBody ResponseEntity<User> getUserByUsername( @PathVariable("username") String username) {
         User p = userService.findByUsername(username).get();
-        return ResponseEntity.ok().header("Access-Control-Allow-Origin", "*").body(p);
+        LOGGER.info("Found user");
+        return ResponseEntity.ok().body(p);
     }
 
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody ResponseEntity<String> login(@RequestBody UserLoginDetails userLogin) {
-       System.out.println(userLogin.toString());
+       LOGGER.info(userLogin.toString());
         User p = userService.findByUsername(userLogin.getUsername()).get();
         byte[] decodedBytes = Base64.getDecoder().decode(p.getPassword());
         String decodedString = new String(decodedBytes);
         if(userLogin.getUsername().equals(p.getUsername()) && userLogin.getPass().equals(decodedString)) {
             final String userToken = Base64.getEncoder().encodeToString((userLogin.getUsername() + ":" + userLogin.getPass()).getBytes());
-            tokenStore.put(userLogin.getUsername(),userToken);
+            IUserService.tokenStore.put(userLogin.getUsername(),userToken);
+            LOGGER.warn("Added entry to map, we have {}",IUserService.tokenStore.size());
             return ResponseEntity
                     .ok()
                     .contentType(MediaType.APPLICATION_JSON)
-                    .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
-                    .body(tokenStore.get(userLogin.getUsername()));
+                    .body( IUserService.tokenStore.get(userLogin.getUsername()));
         }
         else{
             return ResponseEntity.badRequest().body("Wrong request");
         }
 
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/logout", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody ResponseEntity<String> logout(@RequestBody UserToken currentToken) {
+                return ResponseEntity
+                        .ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(null);
     }
 
    /* @CrossOrigin(origins = "http://localhost:4200")

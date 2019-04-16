@@ -14,8 +14,12 @@ const routes: Routes = [
   },
 {
     path: '',
-    component: ProdListComponent
+    component: AppComponent
   },
+  {
+      path: 'productList',
+      component: ProdListComponent
+    },
   {
       path: 'createProduct',
       component: CreateProductComponent

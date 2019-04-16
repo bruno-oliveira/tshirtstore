@@ -28,7 +28,10 @@ export class LoginService {
   }
 
   logout(){
+  console.log("Inside login service");
   //TODO remove on server-side also
   localStorage.setItem('token',null);
+   this.router.navigate(['login']);
+  //localStorage.setItem('token',null);
   }
   }
