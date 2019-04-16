@@ -16,13 +16,14 @@ export class LoginService {
   }
 
   login(model){
-  const headers = new HttpHeaders();
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.model=model;
+  console.log("namee"+this.model.username);
    let url = 'http://localhost:8090/login';
           let result = this.http.post<string>(url, {
               username: this.model.username,
               pass: this.model.password
-          },{ responseType: 'text' as 'json'}).subscribe(res => {console.log("res is "+res); localStorage.setItem('token',res);  this.router.navigate(['']);});
+          },{ headers:headers, responseType: 'text' as 'json'}).subscribe(res => {console.log("res is "+res); localStorage.setItem('token',res);  this.router.navigate(['']);});
 
   }
 

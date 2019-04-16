@@ -58,7 +58,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody ResponseEntity<String> login(@RequestBody UserLoginDetails userLogin) {
-        LOGGER.info(userLogin.toString());
+       System.out.println(userLogin.toString());
         User p = userService.findByUsername(userLogin.getUsername()).get();
         byte[] decodedBytes = Base64.getDecoder().decode(p.getPassword());
         String decodedString = new String(decodedBytes);
