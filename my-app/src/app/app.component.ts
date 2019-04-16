@@ -10,32 +10,13 @@ import { Role } from './user/role';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent  implements OnInit{
+export class AppComponent {
 
     userFromApi: User;
     userRole: any = Role;
 
-    constructor(private userService: UserService, private loginService: LoginService, private router: Router){
-      if(localStorage.getItem('token') !== null){
-      this.userService.get_user(atob(localStorage.getItem('token')).split(":")[0])
-      .subscribe((res : User)=>{ console.log(res);
-      this.userFromApi = res;
-      });                                                                                                     }
-      console.log(this.userFromApi);
-    }
+    constructor(private userService: UserService, private loginService: LoginService, private router: Router,private activatedRoute:ActivatedRoute){
 
-    ngOnInit(){
-    if(localStorage.getItem('token') !== null){
-    console.log("Inside init");
-    this.router.navigate(['productList']);
     }
-    }
-
-        logout(){
-        console.log("Invoking logout");
-        this.loginService.logout();
-        this.userFromApi = null;
-
-        }
 
 }

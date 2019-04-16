@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { DataService } from '../service/data.service';
+import { UserService } from '../service/user.service';
 import { Product } from '../product/product';
 
 @Component({
@@ -16,11 +17,12 @@ export class ProdListComponent implements OnInit {
   private productsObservable : Observable<Product[]> ;
   private displayedColumns;
   public dataSource =  new MatTableDataSource();
+  private userFromApi: User;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dataService: DataService){
+  constructor(private dataService: DataService,private userService: UserService){
 
     this.dataService.get_products().subscribe((res : Product[])=>{
           console.log(res);
@@ -29,12 +31,14 @@ export class ProdListComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.products);
             this.dataSource.sort=this.sort;
             this.dataSource.paginator = this.paginator;
+
         });
   }
 
 
   ngOnInit(){
-
+  console.log("Init for prod list component");
+     this.userFromApi =   this.userService.get_user(atob(localStorage.getItem('token')).split(":")[0]);
   }
 
  deleteItem(id: number) {

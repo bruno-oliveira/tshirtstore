@@ -10,6 +10,7 @@ import { UserService } from './service/user.service';
 import { AppComponent } from './app.component';
 import { ProdListComponent } from './components/prodList.component';
 import { CreateProductComponent } from './components/createProduct.component';
+import { HeaderBarComponent } from './components/headerBar.component';
 import { EditComponent } from './components/edit.component';
 import { LoginComponent } from './login/login.component';
 import { routingModule } from './routing/app-routing.module';
@@ -22,7 +23,8 @@ import { MaterialModule } from './material.module';
     CreateProductComponent,
     EditComponent,
     ProdListComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderBarComponent
   ],
   imports: [
     BrowserModule,

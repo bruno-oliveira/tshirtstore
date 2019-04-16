@@ -26,7 +26,7 @@ productForm = this.fb.group({
     onSubmit() {
       // TODO: Use EventEmitter with form value
       console.warn(this.productForm.value);
-      this.dataService.addProduct(this.productForm.value).subscribe(product => {console.log("Created successfully!");  this.router.navigate(['']);});
+      this.dataService.addProduct(this.productForm.value).subscribe(product => {console.log("Created successfully!");  this.router.navigate(['productList']);});
     }
 
 }
