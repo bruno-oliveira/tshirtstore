@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { routingModule } from './routing/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
+import { httpInterceptorProviders } from "./interceptors";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { MaterialModule } from './material.module';
     FormsModule,
     MaterialModule
   ],
-  providers: [DataService,LoginService, UserService],
+  providers: [DataService,LoginService, UserService,httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
