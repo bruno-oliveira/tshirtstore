@@ -5,6 +5,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { DataService } from '../service/data.service';
 import { UserService } from '../service/user.service';
 import { Product } from '../product/product';
+import { User } from '../user/user';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class ProdListComponent implements OnInit {
   private productsObservable : Observable<Product[]> ;
   private displayedColumns;
   public dataSource =  new MatTableDataSource();
-  private userFromApi: User;
+  private userFromApi;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -31,14 +32,14 @@ export class ProdListComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.products);
             this.dataSource.sort=this.sort;
             this.dataSource.paginator = this.paginator;
+            this.userFromApi =   this.userService.get_user(atob(localStorage.getItem('token')).split(":")[0]);
 
         });
   }
 
 
   ngOnInit(){
-  console.log("Init for prod list component");
-     this.userFromApi =   this.userService.get_user(atob(localStorage.getItem('token')).split(":")[0]);
+
   }
 
  deleteItem(id: number) {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { DataService } from './service/data.service';
@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { routingModule } from './routing/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
-import { httpInterceptorProviders } from "./interceptors";
+import { HeaderInterceptor } from "./interceptors/header.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { httpInterceptorProviders } from "./interceptors";
     FormsModule,
     MaterialModule
   ],
-  providers: [DataService,LoginService, UserService,httpInterceptorProviders],
+  providers: [DataService,LoginService, UserService,{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

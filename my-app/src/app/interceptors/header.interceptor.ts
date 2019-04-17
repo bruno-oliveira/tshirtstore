@@ -3,9 +3,11 @@ import {
   HttpEvent,
   HttpRequest,
   HttpHandler,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpResponse
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';;
 
 
 @Injectable()
@@ -14,13 +16,22 @@ export class HeaderInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (localStorage.getItem('token')=== null || localStorage.getItem('token')=== undefined) {
-      return next.handle(req);
-    }
-    console.warn("HeaderInterceptor");
 
-    const modified = req.clone({ setHeaders: { "X-Man": "Wolverine" } });
+    console.log("Inside interceptor for "+req.url);
+    if(localStorage.getItem('token')!==null && localStorage.getItem('token')!=undefined){
+     const authReq = req.clone({ setHeaders: { 'token': localStorage.getItem('token') } });
 
-    return next.handle(modified);
+        return next.handle(authReq).pipe(
+                    map((event: HttpEvent<any>) => {
+                        if (event instanceof HttpResponse) {
+                            console.log('event--->>>', event);
+                        }
+                        return event;
+                    }));
+                    }
+                    else{
+                    next.handle(req);
+                    }
+
   }
 }

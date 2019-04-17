@@ -11,7 +11,7 @@ export class UserService {
   constructor(private httpClient : HttpClient) {
   }
 
-  get_user(name){
+  get_user(name) : Observable<any> {
    return this.httpClient.get(this.baseUrl + '/showUserByName/'+name)
    //console.log(this.users[0]);
    //   return this.users[0];
